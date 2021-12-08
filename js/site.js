@@ -46,5 +46,14 @@ function mortgageCalculation(mortgageAmount, rate, months){
 
     let html = "";
 
-    for (let i =1; i<)
+    for (let i =1; i<= months; i++){
+        let month = i;
+        interestPayment = parseFloat(balance*(rate/1200));
+        principlePayment = parseFloat(monthlyPayment - (balance * (rate/1200)));
+        totalInterest = parseFloat((totalInterest + interestPayment));
+        balance -= principlePayment;
+        balance = Math.abs(parseFloat(balance));
+
+        html += `${month}${monthlyPayment.toFixed(2)}${principlePayment.toFixed(2)}${interestPayment.toFixed(2)}${totalInterest.toFixed(2)}${balance.toFixed(2)}`
+    }
 } 
