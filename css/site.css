@@ -65,3 +65,12 @@ code[class*="language-"],
 main>.container {
     padding: 60px 15px 0;
 }
+
+#mortgageForm{
+    background-color: var(--white-color);
+}
+
+.tableHeader,.tableFooter{
+    background-color: var(--dark-color);
+    font-size: 18px;
+}

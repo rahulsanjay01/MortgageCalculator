@@ -1,8 +1,8 @@
 //Retrieving the values from the page
 function getValues(){
     let mortgageAmount = document.getElementById("mortgageAmountInput").value;
-    let mortgageAmount = document.getElementById("totalMonthsInput").value;
-    let mortgageAmount = document.getElementById("rateInput").value;
+    let months = document.getElementById("totalMonthsInput").value;
+    let rate = document.getElementById("rateInput").value;
 
     if (mortgageAmount == ""){
         mortgageAmount = parseFloat(18000);
@@ -46,14 +46,56 @@ function mortgageCalculation(mortgageAmount, rate, months){
 
     let html = "";
 
-    for (let i =1; i<= months; i++){
+    for (let i = 1; i <= months; i++){
         let month = i;
         interestPayment = parseFloat(balance*(rate/1200));
         principlePayment = parseFloat(monthlyPayment - (balance * (rate/1200)));
         totalInterest = parseFloat((totalInterest + interestPayment));
+        totalInterest = parseFloat(totalInterest);
         balance -= principlePayment;
         balance = Math.abs(parseFloat(balance));
 
-        html += `${month}${monthlyPayment.toFixed(2)}${principlePayment.toFixed(2)}${interestPayment.toFixed(2)}${totalInterest.toFixed(2)}${balance.toFixed(2)}`
+        html += `<tr><td>${month}</td><td>${monthlyPayment.toFixed(2)}</td><td>${principlePayment.toFixed(2)}</td><td>${interestPayment.toFixed(2)}</td><td>${totalInterest.toFixed(2)}</td><td>${balance.toFixed(2)}</td></tr>`
     }
+
+    let totalCost = mortgageAmount + totalInterest;
+
+    //Using the .toLocaleString to convert to $ format
+    //Displaying the calculated data in the correct places accordingly
+
+    resultsObject.monthlyPayment = monthlyPayment.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalPrinciple = mortgageAmount.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalInterest = totalInterest.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalCost = totalCost.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.html = html;
+
+    return resultsObject;
+
 } 
+
+// Displaying the results
+function displayResults(resultsObject){
+    document.getElementById("monthPaymentsOutput").innerHTML = resultsObject.monthlyPayment;
+    document.getElementById("totalPrincipleOutput").innerHTML = resultsObject.totalPrinciple;
+    document.getElementById("totalInterestOutput").innerHTML = resultsObject.totalInterest;
+    document.getElementById("totalCostOutput").innerHTML = resultsObject.totalCost;
+    document.getElementById("results").innerHTML = resultsObject.html;
+
+}
+
+// Making the reset button functional
+function resetPage(){
+    mortgageAmount = document.getElementById("mortgageAmountInput").value = "";
+    months = document.getElementById("totalMonthsInput").value = "";
+    rate = document.getElementById("rateInput").value = "";
+
+    document.getElementById("monthPaymentsOutput").innerHTML ="";
+    document.getElementById("totalPrincipleOutput").innerHTML ="";
+    document.getElementById("totalInterestOutput").innerHTML ="";
+    document.getElementById("totalCostOutput").innerHTML ="";
+    document.getElementById("results").innerHTML = "";
+}
