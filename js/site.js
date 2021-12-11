@@ -1,11 +1,15 @@
 //Retrieving the values from the page
 function getValues(){
+
+    //making the empty table invisible
+    document.getElementById("table").classList.add("invisible");
+
     let mortgageAmount = document.getElementById("mortgageAmountInput").value;
     let months = document.getElementById("totalMonthsInput").value;
     let rate = document.getElementById("rateInput").value;
 
     if (mortgageAmount == ""){
-        mortgageAmount = parseFloat(18000);
+        mortgageAmount = parseFloat(380000);
     } else {
         mortgageAmount = parseFloat(mortgageAmount);
     }
@@ -37,7 +41,7 @@ function mortgageCalculation(mortgageAmount, rate, months){
     let totalInterest = 0;
     let balance = mortgageAmount;
     let interestPayment = 0;
-    let principlePayment;
+    let principalPayment;
 
     // Caclulation of the total monthly payment
     let monthExponent = -Math.abs(months);
@@ -49,13 +53,13 @@ function mortgageCalculation(mortgageAmount, rate, months){
     for (let i = 1; i <= months; i++){
         let month = i;
         interestPayment = parseFloat(balance*(rate/1200));
-        principlePayment = parseFloat(monthlyPayment - (balance * (rate/1200)));
+        principalPayment = parseFloat(monthlyPayment - (balance * (rate/1200)));
         totalInterest = parseFloat((totalInterest + interestPayment));
         totalInterest = parseFloat(totalInterest);
-        balance -= principlePayment;
+        balance -= principalPayment;
         balance = Math.abs(parseFloat(balance));
 
-        html += `<tr><td>${month}</td><td>${monthlyPayment.toFixed(2)}</td><td>${principlePayment.toFixed(2)}</td><td>${interestPayment.toFixed(2)}</td><td>${totalInterest.toFixed(2)}</td><td>${balance.toFixed(2)}</td></tr>`
+        html += `<tr><td>${month}</td><td>${monthlyPayment.toFixed(2)}</td><td>${principalPayment.toFixed(2)}</td><td>${interestPayment.toFixed(2)}</td><td>${totalInterest.toFixed(2)}</td><td>${balance.toFixed(2)}</td></tr>`
     }
 
     let totalCost = mortgageAmount + totalInterest;
@@ -65,7 +69,7 @@ function mortgageCalculation(mortgageAmount, rate, months){
 
     resultsObject.monthlyPayment = monthlyPayment.toLocaleString('en-US',{style: 'currency', currency:'USD'});
 
-    resultsObject.totalPrinciple = mortgageAmount.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+    resultsObject.totalPrincipal = mortgageAmount.toLocaleString('en-US',{style: 'currency', currency:'USD'});
 
     resultsObject.totalInterest = totalInterest.toLocaleString('en-US',{style: 'currency', currency:'USD'});
 
@@ -80,22 +84,29 @@ function mortgageCalculation(mortgageAmount, rate, months){
 // Displaying the results
 function displayResults(resultsObject){
     document.getElementById("monthPaymentsOutput").innerHTML = resultsObject.monthlyPayment;
-    document.getElementById("totalPrincipleOutput").innerHTML = resultsObject.totalPrinciple;
+    document.getElementById("totalPrincipalOutput").innerHTML = resultsObject.totalPrincipal;
     document.getElementById("totalInterestOutput").innerHTML = resultsObject.totalInterest;
     document.getElementById("totalCostOutput").innerHTML = resultsObject.totalCost;
     document.getElementById("results").innerHTML = resultsObject.html;
+
+    document.getElementById("table").classList.remove("invisible");
 
 }
 
 // Making the reset button functional
 function resetPage(){
+
+    //making the empty table invisible
+    document.getElementById("table").classList.add("invisible");
+
     mortgageAmount = document.getElementById("mortgageAmountInput").value = "";
     months = document.getElementById("totalMonthsInput").value = "";
     rate = document.getElementById("rateInput").value = "";
 
     document.getElementById("monthPaymentsOutput").innerHTML ="";
-    document.getElementById("totalPrincipleOutput").innerHTML ="";
+    document.getElementById("totalPrincipalOutput").innerHTML ="";
     document.getElementById("totalInterestOutput").innerHTML ="";
     document.getElementById("totalCostOutput").innerHTML ="";
     document.getElementById("results").innerHTML = "";
+
 }
