@@ -117,7 +117,7 @@ function mortgageCalculation(mortgageAmount, rate, months){
         balance -= principalPayment;
         balance = Math.abs(parseFloat(balance));
 
-        html += `<tr><td>${month}</td><td>${monthlyPayment.toFixed(2)}</td><td>${principalPayment.toFixed(2)}</td><td>${interestPayment.toFixed(2)}</td><td>${totalInterest.toFixed(2)}</td><td>${balance.toFixed(2)}</td></tr>`
+        html += `&lt;tr>&lt;td>${month}&lt;/td>&lt;td>${monthlyPayment.toFixed(2)}&lt;/td>&lt;td>${principalPayment.toFixed(2)}&lt;/td>&lt;td>${interestPayment.toFixed(2)}&lt;/td>&lt;td>${totalInterest.toFixed(2)}&lt;/td>&lt;td>${balance.toFixed(2)}&lt;/td>&lt;/tr>`
     }
 
     let totalCost = mortgageAmount + totalInterest;
