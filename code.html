@@ -56,17 +56,146 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //call Hello World
-                        function HelloWorld(){
-                            alert("Hello World");
-                        }
+                        //Retrieving the values from the page
+function getValues(){
+
+    //making the empty table invisible
+    document.getElementById("table").classList.add("invisible");
+
+    let mortgageAmount = document.getElementById("mortgageAmountInput").value;
+    let months = document.getElementById("totalMonthsInput").value;
+    let rate = document.getElementById("rateInput").value;
+
+    if (mortgageAmount == ""){
+        mortgageAmount = parseFloat(380000);
+    } else {
+        mortgageAmount = parseFloat(mortgageAmount);
+    }
+
+    if (months == ""){
+        months = parseFloat(300);
+    } else {
+        months = parseFloat(months);
+    }
+
+    if (rate == "") {
+        rate = parseFloat(4);
+    } else {
+        rate = parseFloat(rate);
+    }
+
+    //Mortgage calculation 
+    let resultsHTML = mortgageCalculation(mortgageAmount, rate, months);
+
+    //show the html to the user
+    displayResults(resultsHTML);
+}
+
+// Calculations for the amorization schedule
+function mortgageCalculation(mortgageAmount, rate, months){
+
+    let resultsObject = {};
+
+    let totalInterest = 0;
+    let balance = mortgageAmount;
+    let interestPayment = 0;
+    let principalPayment;
+
+    // Caclulation of the total monthly payment
+    let monthExponent = -Math.abs(months);
+    let monthlyPayment = (mortgageAmount * (rate/1200)) / (1-(1+(rate/1200))**(monthExponent));
+    monthlyPayment = parseFloat(monthlyPayment);
+
+    let html = "";
+
+    for (let i = 1; i <= months; i++){
+        let month = i;
+        interestPayment = parseFloat(balance*(rate/1200));
+        principalPayment = parseFloat(monthlyPayment - (balance * (rate/1200)));
+        totalInterest = parseFloat((totalInterest + interestPayment));
+        totalInterest = parseFloat(totalInterest);
+        balance -= principalPayment;
+        balance = Math.abs(parseFloat(balance));
+
+        html += `<tr><td>${month}</td><td>${monthlyPayment.toFixed(2)}</td><td>${principalPayment.toFixed(2)}</td><td>${interestPayment.toFixed(2)}</td><td>${totalInterest.toFixed(2)}</td><td>${balance.toFixed(2)}</td></tr>`
+    }
+
+    let totalCost = mortgageAmount + totalInterest;
+
+    //Using the .toLocaleString to convert to $ format
+    //Displaying the calculated data in the correct places accordingly
+
+    resultsObject.monthlyPayment = monthlyPayment.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalPrincipal = mortgageAmount.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalInterest = totalInterest.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.totalCost = totalCost.toLocaleString('en-US',{style: 'currency', currency:'USD'});
+
+    resultsObject.html = html;
+
+    return resultsObject;
+
+} 
+
+// Displaying the results
+function displayResults(resultsObject){
+    document.getElementById("monthPaymentsOutput").innerHTML = resultsObject.monthlyPayment;
+    document.getElementById("totalPrincipalOutput").innerHTML = resultsObject.totalPrincipal;
+    document.getElementById("totalInterestOutput").innerHTML = resultsObject.totalInterest;
+    document.getElementById("totalCostOutput").innerHTML = resultsObject.totalCost;
+    document.getElementById("results").innerHTML = resultsObject.html;
+    
+    //This will remove the invisible class and allow for visibility accordingly
+    document.getElementById("table").classList.remove("invisible");
+
+}
+
+// Making the reset button functional
+function resetPage(){
+
+    //Making the empty table invisible
+    document.getElementById("table").classList.add("invisible");
+
+    mortgageAmount = document.getElementById("mortgageAmountInput").value = "";
+    months = document.getElementById("totalMonthsInput").value = "";
+    rate = document.getElementById("rateInput").value = "";
+
+    document.getElementById("monthPaymentsOutput").innerHTML ="";
+    document.getElementById("totalPrincipalOutput").innerHTML ="";
+    document.getElementById("totalInterestOutput").innerHTML ="";
+    document.getElementById("totalCostOutput").innerHTML ="";
+    document.getElementById("results").innerHTML = "";
+
+}
+
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h4>Description</h4>
+                    <p>The code can be broken down into four main functions:</p>
+                    
+                    <h5>1.) getValues()</h5>
+                    <p>
+
+                    </p>
+                    <br>
+                    <h5>2.) mortgageCalculation()</h5>
+                    <p>
+
+                    </p>
+                    <br>
+                    <h5>3.) displayResults()</h5>
+                    <p>
+                        In this section of the code, I have implemented the functionality that allows us to render and display the results to the user. The inner HTML of the alert header is set to the message property after the displayMessage function receives returnObj. Lastly, the invisible class is removed to display the result.
+                    </p>
+                    <br>
+                    <h5>4.) resetPage()</h5>
+                    <p>
+                        
+                    </p>
                 </div>
             </div>
          </div>
@@ -83,9 +212,9 @@
                 </div>
                 <div class="col d-flex align-items-top justify-content-start justify-content-lg-end">
                     <div class="row">
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-github fa-2x"></i></a></div>
-                        <div class="col social"><a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></div>
+                        <div class="col linkedin social"><a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col github social"><a href="#" target="_blank"><i class="fab fa-github fa-2x"></i></a></div>
+                        <div class="col twitter social"><a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></div>
                     </div>
                 </div>
             </div>

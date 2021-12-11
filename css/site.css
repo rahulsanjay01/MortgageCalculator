@@ -30,9 +30,19 @@ footer .social>a{
     opacity:0.75;
 }
 
-footer .social>a:hover{
+footer .linkedin>a:hover{
     opacity: 0.9;
-    color: var(--secondary-color);
+    color: #1163bf;
+}
+
+footer .github>a:hover{
+    opacity: 0.9;
+    color: #7a319a;
+}
+
+footer .twitter>a:hover{
+    opacity: 0.9;
+    color: #1da1f3;
 }
 
 .bsicon{

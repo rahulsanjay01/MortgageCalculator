@@ -15,7 +15,7 @@ function getValues(){
     }
 
     if (months == ""){
-        months = parseFloat(80);
+        months = parseFloat(300);
     } else {
         months = parseFloat(months);
     }
