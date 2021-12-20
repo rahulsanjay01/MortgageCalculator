@@ -179,22 +179,29 @@ function resetPage(){
                     
                     <h5>1.) getValues()</h5>
                     <p>
-
+                        The JavaScript code of this application begins with the getValues function. The very first step is to ensure that the empty table is not visible. Making the empty table invisible is done by adding the invisible class. The getValues function starts when the calculate button is clicked. If the user decides not to enter any values, the user may proceed with the provided placeholder values to demo the application. This function takes the user input or the placeholders and passes them on to the mortgageCalculation function. Lastly, the HTML string is passed on to the displayResults function to make the data visible to the user accordingly.    
                     </p>
                     <br>
+                    
                     <h5>2.) mortgageCalculation()</h5>
                     <p>
+                        In this function, all of the calculations will be executed and, I have also utilized resultsObject to hold all of data that will be returned. After I created the necessary variables for generating the output and table rows, I set up the monthly payment calculation using parseFloat to ensure that the input is not a string. Depending on the selected mortgage term, the loop will increment as many times as specified, starting at the index of 1. For each month the values differ due to our formulas, the balance and total interest are updated before they are inserted and become a row in an HTML table. Rounded monthly payment values will be displayed to the user with the help of the .toFixed(2) method. I am not using rounded values in the calculations, and the variable monthlyPayment does not contain rounded values. If rounded values were used for the calculations, errors would occur along the way. To prevent the balance from displaying a negative value when it gets to $0, I have used the Math.abs function to display the absolute values.                    
+                    </p>
+                    <br>
 
+                    <p>
+                        The final step in the calculation process is to calculate the total by utilizing the user input. There is a designated section in the code that holds variables that were calculated in resultsObject. Before the resultsObject is returned, I have also converted the monetary values to USD currency format.
                     </p>
                     <br>
                     <h5>3.) displayResults()</h5>
                     <p>
-                        In this section of the code, I have implemented the functionality that allows us to render and display the results to the user. The inner HTML of the alert header is set to the message property after the displayMessage function receives returnObj. Lastly, the invisible class is removed to display the result.
+                        In this section of the code, I have implemented the functionality that allows us to render and display the results to the user. The invisible class is removed to display the result. The main functionality here is that the values from resultsObject are placed into the correct element, the data will be displayed in columns and rows. I have used the same function in another coding challenge named FizzBuzz in which the same function is called displayData. To find a more detailed explanation of this function, click here. Search for section three on the code explanation page with the heading "The View Function".
                     </p>
                     <br>
+
                     <h5>4.) resetPage()</h5>
                     <p>
-                        
+                        The reset page function allows the user to clear their input, and it gives them a chance to start over without refreshing the page. The page is reset by setting the inner HTML of the elements to empty strings. I also added the invisible class again to ensure that the empty table is not visible. Once the user presses the calculate button, the invisible class will be removed again.
                     </p>
                 </div>
             </div>
