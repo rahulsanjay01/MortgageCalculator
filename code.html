@@ -23,7 +23,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/Mark.svg" class="d-inline-block align-text-top" width="40" height="34"> Mortgage Calculator</a>
+        <a class="navbar-brand" href="index.html"><img src="img/Mark.svg" class="d-inline-block align-text-top" width="40" height="34"> Mortgage Calculator</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,10 +40,10 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/rahulsanjay01/MortgageCalculator">Git Repo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">About</a>
+                    <a class="nav-link" target="_blank" href="https://rahulsanjaya.com/">About</a>
                 </li>
             </ul>
         </div>
@@ -187,7 +187,7 @@ function resetPage(){
                     <p>
                         In this function, all of the calculations will be executed and, I have also utilized resultsObject to hold all of data that will be returned. After I created the necessary variables for generating the output and table rows, I set up the monthly payment calculation using parseFloat to ensure that the input is not a string. Depending on the selected mortgage term, the loop will increment as many times as specified, starting at the index of 1. For each month the values differ due to our formulas, the balance and total interest are updated before they are inserted and become a row in an HTML table. Rounded monthly payment values will be displayed to the user with the help of the .toFixed(2) method. I am not using rounded values in the calculations, and the variable monthlyPayment does not contain rounded values. If rounded values were used for the calculations, errors would occur along the way. To prevent the balance from displaying a negative value when it gets to $0, I have used the Math.abs function to display the absolute values.                    
                     </p>
-                    <br>
+                    
 
                     <p>
                         The final step in the calculation process is to calculate the total by utilizing the user input. There is a designated section in the code that holds variables that were calculated in resultsObject. Before the resultsObject is returned, I have also converted the monetary values to USD currency format.
@@ -219,9 +219,9 @@ function resetPage(){
                 </div>
                 <div class="col d-flex align-items-top justify-content-start justify-content-lg-end">
                     <div class="row">
-                        <div class="col linkedin social"><a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
-                        <div class="col github social"><a href="#" target="_blank"><i class="fab fa-github fa-2x"></i></a></div>
-                        <div class="col twitter social"><a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></div>
+                        <div class="col linkedin social"><a href="https://www.linkedin.com/in/rahulsanjaya/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col github social"><a href="https://github.com/rahulsanjay01" target="_blank"><i class="fab fa-github fa-2x"></i></a></div>
+                        <div class="col twitter social"><a href="https://twitter.com/rahul_sanjay_a" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></div>
                     </div>
                 </div>
             </div>
